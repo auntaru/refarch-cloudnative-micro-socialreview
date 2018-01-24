@@ -1,0 +1,17 @@
+# Spring properties
+spring:
+  application:
+     name: socialreview-microservice
+
+
+# Server configuration
+server:
+  context-path: /micro
+  port: 8080
+
+
+# Cloudant Confiugration
+cloudant:
+    username: xxxx
+    password: zzzzz
+    host: https://xxxx-yyyy-bluemix.cloudant.com

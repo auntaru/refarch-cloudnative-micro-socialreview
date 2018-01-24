@@ -1,0 +1,67 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE")
+        classpath("io.spring.gradle:dependency-management-plugin:0.6.0.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'io.spring.dependency-management'
+
+jar {
+    baseName = 'micro-socialreview'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencyManagement {
+     imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Brixton.SR4'
+     }
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web:1.4.0.RELEASE") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+
+    compile("org.springframework.boot:spring-boot-starter-jetty:1.4.0.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter-actuator:1.4.0.RELEASE")
+    compile('org.springframework.cloud:spring-cloud-starter-eureka')
+    compile group: 'com.cloudant', name: 'cloudant-client', version: '2.5.1'
+
+    compile("junit:junit")
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.4.0.RELEASE'
+
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+test {
+    useJUnit()
+    exclude '**/DeployTest.class'
+    testLogging {
+        events 'started', 'passed'
+        showStandardStreams = true
+    }
+}
+
+task integrationTest(type: Test) {
+    useJUnit {
+        include '**/*IntegrationTests.class'
+    }
+}
