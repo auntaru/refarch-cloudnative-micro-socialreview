@@ -10,8 +10,9 @@ server:
   port: 8080
 
 
-# Cloudant Confiugration
+# Cloudant Configuration
 cloudant:
+    db: socialreviewdb
     username: xxxx
     password: zzzzz
-    host: https://xxxx-yyyy-bluemix.cloudant.com
+    url: https://xxxx-yyyy-bluemix.cloudant.com
