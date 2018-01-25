@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.cloudant.client.api.CloudantClient;
 import com.cloudant.client.api.Database;
 import com.cloudant.client.api.model.IndexField;
 import com.cloudant.client.api.model.IndexField.SortOrder;
@@ -21,64 +20,42 @@ import com.cloudant.client.api.model.Response;
 @RequestMapping("/review")
 public class ReviewRestController {
 
-  @Autowired
-  private Database db;
+    @Autowired
+    private Database db;
 
-  // Create a new review
-  @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
-  public @ResponseBody String saveReview(@RequestBody Review review) {
-
-    // Mock data for testing
-    //db.save(new Review(true));
-    //Review doc = db.find(Review.class,"111");
-    //return doc.toString();
-
-    System.out.println("Save Review " + review);
-
-    Response r = null;
-    if (review != null) {
-        r = db.post(review);
+    // Create a new review
+    @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
+    public @ResponseBody String saveReview(@RequestBody Review review) {
+        System.out.println("Save Review " + review);
+        Response r = null;
+        if (review != null) {
+            r = db.post(review);
+        }
+        return r.getId();
     }
 
-    return r.getId();
-  }
-
-
-  // Query reviews for all documents or by ItemId
-  @RequestMapping(method=RequestMethod.GET)
-  public @ResponseBody List<Review> getAll(@RequestParam(required=false) Integer itemId) {
-
-    // Get all documents from socialreviewdb
-    List<Review> allDocs = null;
-    try
-    {
-      if(itemId == null)
-      {
-        allDocs = db.getAllDocsRequestBuilder().includeDocs(true).build().getResponse()
-            .getDocsAs(Review.class);
-      }else{
-
-          // create Index
-          // Here is create a design doc named designdoc
-          // A view named querybyitemIdView
-          // and an index named itemId
-		      db.createIndex("querybyitemIdView","designdoc","json",
-				      new IndexField[]{
-                	new IndexField("itemId",SortOrder.asc)
-              }
-		      );
-          System.out.println("Successfully created index");
-          allDocs = db.findByIndex("{\"itemId\" : " + itemId + "}", Review.class);
-      }
-
-
-    } catch (Exception e) {
-				System.out.println("Exception thrown : " + e.getMessage());
-		}
-
-
-    return allDocs;
-  }
-
-
+    // Query reviews for all documents or by ItemId
+    @RequestMapping(method=RequestMethod.GET)
+    public @ResponseBody List<Review> getAll(@RequestParam(required=false) Integer itemId) {
+        // Get all documents from socialreviewdb
+        List<Review> allDocs = null;
+        try {
+            if (itemId == null) {
+                allDocs = db.getAllDocsRequestBuilder().includeDocs(true).build().getResponse()
+                            .getDocsAs(Review.class);
+            } else {
+                // create Index
+                // Here is create a design doc named designdoc
+                // A view named querybyitemIdView
+                // and an index named itemId
+                db.createIndex("querybyitemIdView","designdoc","json",
+                    new IndexField[]{new IndexField("itemId",SortOrder.asc)});
+                System.out.println("Successfully created index");
+                allDocs = db.findByIndex("{\"itemId\" : " + itemId + "}", Review.class);
+            }
+        } catch (Exception e) {
+            System.out.println("Exception thrown : " + e.getMessage());
+        }
+        return allDocs;
+    }
 }
