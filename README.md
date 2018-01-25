@@ -65,11 +65,10 @@ You can close the console now.
     $ ./gradlew test
     ````
 
-- Validate the application"
+- Validate the application:
 
-    http://localhost:8080/micro/review
+    Go to the reviews endpoint to see all reviews in the database: http://localhost:8080/micro/review
 
-    This will return all the reviews in the database.
     You can use Chrome POSTMAN to insert a new review document using the following sample content:
 
     ```json
