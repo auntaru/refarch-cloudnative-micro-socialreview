@@ -56,7 +56,7 @@ You can close the console now.
 - To run the app:
 
     ```
-    $ java -jar build/libs/micro-soialreview-0.1.0.jar
+    $ java -jar build/libs/micro-socialreview-0.1.0.jar
     ```
 
 - To run integration test case:
