@@ -1,5 +1,27 @@
 # Spring Boot app Integration with IBM Cloudant
 
+IBM Cloudant / Apache CouchDB 
+
+https://www.ibm.com/cloud/cloudant
+https://cloud.ibm.com/docs/Cloudant?topic=Cloudant-couchdb-and-cloudant
+https://medium.com/codait/cloudant-and-couchdb-replication-with-couchreplicate-79ea6e898e6e
+
+https://www.youtube.com/watch?v=Vh7EDEF81NY&feature=emb_logo
+https://www.openshift.com/blog/openshift-commons-briefing-using-apache-couchdb-operator-for-data-portability-josh-mintz-and-will-holley-ibm
+
+https://www.youtube.com/watch?v=aOE90VAVOcU
+https://www.youtube.com/watch?v=5co1CuTPtkg
+https://www.youtube.com/watch?v=nlqv9Np3iAU
+
+   Let's not forget that iBM owns Red-HaT Enterprise Linux . . . 
+
+https://cloud.ibm.com/catalog?category=databases#services
+https://cloud.ibm.com/catalog/services/cloudant#
+
+IBM Cloudant is a fully managed JSON document database that offers independent serverless scaling of provisioned throughput capacity and storage. Cloudant is compatible with Apache CouchDB and accessible through a simple to use HTTPS API for web, mobile, and IoT applications.
+
+HA/DR: All Cloudant JSON documents are stored in triplicate for in-region HA/DR.  In regions that support availability zones (Dallas, Washington DC, London, Frankfurt, Tokyo, Sydney), documents are stored across three separate availability zones.
+
 *This project is part of the 'IBM Cloud Native Reference Architecture' suite, available at
 https://github.com/ibm-cloud-architecture/refarch-cloudnative*
 
