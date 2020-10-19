@@ -13,8 +13,6 @@ https://www.youtube.com/watch?v=aOE90VAVOcU
 https://www.youtube.com/watch?v=5co1CuTPtkg
 https://www.youtube.com/watch?v=nlqv9Np3iAU
 
-   Let's not forget that iBM owns Red-HaT Enterprise Linux . . . 
-
 https://cloud.ibm.com/catalog?category=databases#services
 https://cloud.ibm.com/catalog/services/cloudant#
 
